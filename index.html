@@ -1,0 +1,53 @@
+    <head>
+        <title>Test</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    </head>
+    <body class="container">
+        <h1 id="header">Main</h1>
+        <input id="name" placeholder="Name"> 
+        <input id="surname" placeholder="Surname">
+        <button class="btn btn-outline-primary" onclick="myfunction()">Add to list something</button>
+        <button class="btn btn-outline-primary" onclick="storage()">Check storage</button>
+        <button class="btn btn-outline-primary" onclick="storage_delete()">Delete storage</button>
+        <ul id="list">   
+            <li>
+                Welcome 
+            </li>
+        </ul>
+    </body>
+    <style>
+        body
+        {
+            background-color: lightblue;
+        }
+        input
+        {
+            background-color:rgb(180, 127, 69)
+        }
+    </style>
+        <script>
+            function myfunction()
+            {
+                name=document.getElementById("name").value
+                surname=document.getElementById("surname").value
+                document.getElementById("list").innerHTML+="<li>"+"Welcome "+name+" "+surname +"!"+"</li>"
+                document.getElementById("name").value=""
+                document.getElementById("surname").value=""
+                localStorage.setItem('text', name + surname);
+            }
+            function storage()
+            {          
+                for(let text in localStorage)
+                {
+                    if (!localStorage.hasOwnProperty(text)) 
+                    {
+                        continue;
+                    }
+                    document.getElementById("list").innerHTML+="<li>"+"Welcome "+localStorage.getItem(text)+" "+"!"+"</li>"
+                }
+            }
+            function storage_delete()
+            {
+                delete localStorage.text;
+            }
+        </script>
